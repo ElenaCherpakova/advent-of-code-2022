@@ -38,7 +38,7 @@ const findCommonItemInGroup3 = ([sack1, sack2, sack3]) => {
   const commonItem = [...set3].find((item) => set1.has(item) && set2.has(item));
   return commonItem;
 };
-//convert to common letter To Numbers and sum them up
+//convert common letters to numbers and sum them up
 const sumTotal = getGroupOf3(rucksacks)
   .map((item) => findCommonItemInGroup3(item))
   .map((item) => letterToNumber(item))

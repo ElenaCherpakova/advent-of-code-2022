@@ -39,19 +39,32 @@ for (const move of rawMoves) {
 }
 // console.log({ moves });
 
-function playMove(stacks, move) {
-  for (let i = 0; i < move.count; i++) {
-    // console.log({ move });
-    const crate = stacks[move.from].pop();
-    stacks[move.to].push(crate);
-  }
-}
-
 function part1() {
   //making a deep copy of stacks
   const localStacks = JSON.parse(JSON.stringify(stacks));
   for (const move of moves) {
-    playMove(localStacks, move);
+    for (let i = 0; i < move.count; i++) {
+      const crate = stacks[move.from].pop();
+      stacks[move.to].push(crate);
+    }
+    return indexes
+      .map((value) => {
+        const stack = localStacks[value];
+        return stack[stack.length - 1];
+      })
+      .join('');
+  }
+}
+
+function part2() {
+  //making a deep copy of stacks
+  const localStacks = JSON.parse(JSON.stringify(stacks));
+  // console.log({ localStacks });
+  for (const move of moves) {
+    const crates = localStacks[move.from].splice(-move.count, move.count);
+    // console.log({ crates });
+    localStacks[move.to] = localStacks[move.to].concat(crates);
+    // console.log({ localStacks});
   }
   return indexes
     .map((value) => {
@@ -61,4 +74,5 @@ function part1() {
     .join('');
 }
 
-console.log(part1());
+// console.log(part1());
+console.log(part2());

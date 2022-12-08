@@ -56,7 +56,6 @@ function part1() {
   return indexes
     .map((value) => {
       const stack = localStacks[value];
-
       return stack[stack.length - 1];
     })
     .join('');

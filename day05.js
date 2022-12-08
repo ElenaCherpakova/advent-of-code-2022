@@ -4,13 +4,13 @@ const inputFunc = (txtFile) => {
   const input = readFileSync(`${txtFile}`, 'utf8');
   return input.trimEnd();
 };
-
 const sampleInput = inputFunc('day05.txt');
+
 const [rawStacks, rawMoves] = sampleInput
   .split('\n\n')
   .map((item) => item.split('\n'));
 const parsedStacks = rawStacks.map((line) =>
-  [...line].filter((value, index) => index % 4 === 1),
+  [...line].filter((_, index) => index % 4 === 1),
 );
 // console.log(parsedStacks)
 const indexes = parsedStacks.pop();
@@ -74,5 +74,5 @@ function part2() {
     .join('');
 }
 
-// console.log(part1());
+console.log(part1());
 console.log(part2());
